@@ -46,11 +46,11 @@ go test ./...
 go build .
 ```
 
-You can also run the app directly without building a binary. Pass arguments after `--`:
+You can also run the app directly without building a binary:
 
 ```bash
-go run . -- "eager"
-go run . -- "look forward to"
+go run . "eager"
+go run . "look forward to"
 ```
 
 ## Running a released binary
