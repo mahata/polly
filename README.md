@@ -46,6 +46,13 @@ go test ./...
 go build .
 ```
 
+ビルドせずに直接実行することもできます。引数は `--` の後に渡してください。
+
+```bash
+go run . -- "eager"
+go run . -- "look forward to"
+```
+
 ## Running a released binary
 
 Download the `polly-<os>-<arch>` binary (with `.exe` on Windows) that matches your OS and architecture from [GitHub Releases](https://github.com/mahata/polly/releases).
