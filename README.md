@@ -10,13 +10,13 @@ go run . "text to synthesize"
 
 ## Running a released binary
 
-[GitHub Releases](https://github.com/mahata/polly/releases) から自分の OS/arch に合うバイナリ（`polly-<os>-<arch>`、Windows は `.exe`）をダウンロードしてください。
+Download the binary that matches your OS/arch (`polly-<os>-<arch>`, with `.exe` on Windows) from [GitHub Releases](https://github.com/mahata/polly/releases).
 
-実行には AWS CLI がインストール済みで、AWS Polly を利用できる認証情報が設定されている必要があります。
+You need the AWS CLI installed and credentials configured that can access AWS Polly.
 
 ### macOS
 
-ダウンロードしたバイナリには quarantine 属性が付与されており、そのまま実行すると Gatekeeper に "Apple could not verify ..." と表示されてブロックされます。コード署名/公証を行っていないため、初回のみ手動で許可してください。
+The downloaded binary has the quarantine attribute set, so running it as-is will be blocked by Gatekeeper with "Apple could not verify ...". Since the binary is not code-signed or notarized, you need to allow it manually the first time.
 
 ```bash
 chmod +x ./polly-darwin-arm64
@@ -24,7 +24,7 @@ xattr -d com.apple.quarantine ./polly-darwin-arm64
 ./polly-darwin-arm64 "text to synthesize"
 ```
 
-`amd64` 版も同様の手順です。CLI を使わず Finder で右クリック →「開く」→「開く」を選択しても初回承認できます。
+The `amd64` build uses the same steps. Alternatively, instead of using the CLI, you can right-click the binary in Finder, choose "Open", and then "Open" again to approve it on first launch.
 
 ### Linux
 
@@ -39,4 +39,4 @@ chmod +x ./polly-linux-amd64
 .\polly-windows-amd64.exe "text to synthesize"
 ```
 
-署名されていないため、初回起動時に SmartScreen 警告が表示される場合があります。「詳細情報」→「実行」で続行してください。
+Because the binary is unsigned, SmartScreen may show a warning on first launch. Click "More info" → "Run anyway" to continue.
