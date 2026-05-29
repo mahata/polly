@@ -15,6 +15,25 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' && github.event.workflow_run.head_branch == 'main' && github.event.workflow_run.head_repository.full_name == github.repository }}
     runs-on: ubuntu-latest
 
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - goos: linux
+            goarch: amd64
+          - goos: linux
+            goarch: arm64
+          - goos: darwin
+            goarch: amd64
+          - goos: darwin
+            goarch: arm64
+          - goos: windows
+            goarch: amd64
+            ext: .exe
+          - goos: windows
+            goarch: arm64
+            ext: .exe
+
     steps:
       - uses: actions/checkout@v4
         with:
@@ -23,12 +42,16 @@ jobs:
         with:
           go-version-file: go.mod
       - name: Build binary
+        env:
+          GOOS: ${{ matrix.goos }}
+          GOARCH: ${{ matrix.goarch }}
+          CGO_ENABLED: "0"
         run: |
           mkdir -p dist
-          go build -o dist/polly .
+          go build -o "dist/polly-${{ matrix.goos }}-${{ matrix.goarch }}${{ matrix.ext }}" .
       - name: Create release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v0.0.${{ github.run_number }}
           name: v0.0.${{ github.run_number }}
-          files: dist/polly
+          files: dist/polly-${{ matrix.goos }}-${{ matrix.goarch }}${{ matrix.ext }}
