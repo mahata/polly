@@ -33,6 +33,11 @@ type deps struct {
 	Clipboard clipboardFunc
 }
 
+var (
+	underscoreRunRe = regexp.MustCompile(`_+`)
+	jsonObjectRe    = regexp.MustCompile(`(?s)\{.*\}`)
+)
+
 func sanitizeFilename(text string) string {
 	var b strings.Builder
 	for _, r := range text {
@@ -43,7 +48,7 @@ func sanitizeFilename(text string) string {
 			b.WriteRune('_')
 		}
 	}
-	collapsed := regexp.MustCompile(`_+`).ReplaceAllString(b.String(), "_")
+	collapsed := underscoreRunRe.ReplaceAllString(b.String(), "_")
 	trimmed := strings.Trim(collapsed, "_")
 	if trimmed == "" {
 		trimmed = "sample"
@@ -84,8 +89,6 @@ Do all of the following:
 
 Respond with ONLY a single JSON object on one line, with no surrounding prose, no markdown, no code fences, exactly these keys:
 {"sentence": "<the English example sentence>", "translation": "<Japanese translation>", "explanation": "<Japanese explanation>"}`
-
-var jsonObjectRe = regexp.MustCompile(`(?s)\{.*\}`)
 
 func parseVocabJSON(raw string) (vocabResult, error) {
 	trimmed := strings.TrimSpace(raw)
