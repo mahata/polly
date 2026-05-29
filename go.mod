@@ -2,7 +2,7 @@ module github.com/mahata/polly
 
 go 1.24
 
-require github.com/github/copilot-sdk/go v0.3.0
+require github.com/github/copilot-sdk/go v1.0.0-beta.9
 
 require (
 	github.com/go-logr/logr v1.4.3 // indirect
