@@ -46,7 +46,7 @@ go test ./...
 go build .
 ```
 
-ビルドせずに直接実行することもできます。引数は `--` の後に渡してください。
+You can also run the app directly without building a binary. Pass arguments after `--`:
 
 ```bash
 go run . -- "eager"
