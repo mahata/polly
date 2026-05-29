@@ -12,6 +12,8 @@ go run . "text to synthesize"
 
 [GitHub Releases](https://github.com/mahata/polly/releases) から自分の OS/arch に合うバイナリ（`polly-<os>-<arch>`、Windows は `.exe`）をダウンロードしてください。
 
+実行には AWS CLI がインストール済みで、AWS Polly を利用できる認証情報が設定されている必要があります。
+
 ### macOS
 
 ダウンロードしたバイナリには quarantine 属性が付与されており、そのまま実行すると Gatekeeper に "Apple could not verify ..." と表示されてブロックされます。コード署名/公証を行っていないため、初回のみ手動で許可してください。
