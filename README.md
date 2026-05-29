@@ -46,6 +46,13 @@ go test ./...
 go build .
 ```
 
+You can also run the app directly without building a binary:
+
+```bash
+go run . "eager"
+go run . "look forward to"
+```
+
 ## Running a released binary
 
 Download the `polly-<os>-<arch>` binary (with `.exe` on Windows) that matches your OS and architecture from [GitHub Releases](https://github.com/mahata/polly/releases).
