@@ -19,20 +19,10 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - goos: linux
-            goarch: amd64
-          - goos: linux
-            goarch: arm64
           - goos: darwin
             goarch: amd64
           - goos: darwin
             goarch: arm64
-          - goos: windows
-            goarch: amd64
-            ext: .exe
-          - goos: windows
-            goarch: arm64
-            ext: .exe
 
     steps:
       - uses: actions/checkout@v4
